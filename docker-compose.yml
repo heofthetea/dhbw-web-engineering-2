@@ -3,6 +3,7 @@ services:
     image: erseco/alpine-php-webserver
     container_name: php
     volumes:
-      - ./:/var/www/html/
+      - ./src:/var/www/html/
+      - ./data/:/var/www/data
     ports:
       - 8080:8080
