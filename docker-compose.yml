@@ -1,0 +1,8 @@
+services:
+  php:
+    image: erseco/alpine-php-webserver
+    container_name: php
+    volumes:
+      - ./:/var/www/html/
+    ports:
+      - 8080:8080
