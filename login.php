@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -18,6 +18,10 @@
     </form>
 
     <?php
+    session_start();
+    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+        return;
+    }
     $user = [
         "username" => "admin",
         "password" => "admin",
@@ -25,8 +29,15 @@
         "surname" => "Doe",
         "email" => "admin@example.com"
     ];
+
+    if ($_POST['logout']) {
+        echo 'logged out';
+        session_unset();
+        session_destroy();
+        $_SESSION = NULL;
+        exit();
+    }
     if ($_POST["username"] === $user["username"] && $_POST["password"] === $user["password"]) {
-        session_start();
         $_SESSION["username"] = $_POST["username"];
         $_SESSION["email"] = $user["email"];
         $_SESSION["name"] = $user["name"];

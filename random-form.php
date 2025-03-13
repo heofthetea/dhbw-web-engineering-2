@@ -7,6 +7,14 @@
 </head>
 
 <body>
+  <?php
+  session_start();
+  if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit();
+  }
+  ?>
+
   <form action="" method="POST">
     <label for="name">Name</label>
     <input type="text" name="name" id="name" value="<?php session_start();
@@ -51,6 +59,10 @@
     <hr />
     <button type="submit">Submit</button>
     <button type="reset">Clear</button>
+  </form>
+  <form action="login.php" method="post">
+    <input type="hidden" name="logout" value="1">
+    <button>Logout</button>
   </form>
 
   <?php
